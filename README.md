@@ -43,7 +43,7 @@ To get a local copy up and running follow these simple steps.
 - [ ] Procedural exterior environnment
 
 ### Data Visualisation
-- [ ] Export data sensor in python server 
+- [x] Export data sensor in python server 
 - [ ] Visualise data sensor 
 
 
