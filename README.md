@@ -34,7 +34,9 @@ To get a local copy up and running follow these simple steps.
 - [x] Lidar3D (poc)
 - [x] Lidar2D (poc)
 - [x] Distance 
-- [ ] Constructor specs (RPLidar, velodyne, ouster) 
+- [ ] Depth Camera
+- [ ] Camera
+- [ ] Constructor specs (RPLidar, velodyne, ouster,intel) 
 
 ### Environment
 - [ ] Procedural interior environnment
