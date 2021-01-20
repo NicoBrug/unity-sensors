@@ -30,5 +30,26 @@ To get a local copy up and running follow these simple steps.
 
 ## Roadmap
 
-- [ ] Mercury
-- [x] Venus
+### sensors
+- [x] Lidar3D (poc)
+- [x] Lidar2D (poc)
+- [x] Distance 
+- [ ] Constructor specs (RPLidar, velodyne, ouster) 
+
+### Environment
+- [ ] Procedural interior environnment
+- [ ] Procedural exterior environnment
+
+### Data Visualisation
+- [ ] Export data sensor in python server 
+- [ ] Visualise data sensor 
+
+
+<!-- LICENSE -->
+## License
+
+Distributed under the MIT License. See `LICENSE` for more information.
+
+<!-- CONTACT -->
+## Contact
+Nicolas Brugie - nicolasbrugie@gmail.com
