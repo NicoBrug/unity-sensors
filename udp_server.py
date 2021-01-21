@@ -38,6 +38,7 @@ class UDP_Server:
         with open('data.json', 'w', encoding='utf-8') as f:
             json.dump(data, f, ensure_ascii=False, indent=4)
 
+ 
 
 server = UDP_Server()
 server.connect()

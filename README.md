@@ -14,6 +14,8 @@ To get a local copy up and running follow these simple steps.
 
 * python 3.9 
 * unity
+* nodejs
+* npm
 
 ### Installation
 1. Clone the repo in unity project
@@ -21,12 +23,17 @@ To get a local copy up and running follow these simple steps.
    git clone https://github.com//NicoBrug/unity-sensors
    ```
 2. Add the scripts to your unity GameObjects
-2. run python server
+2. run python udp server
    ```sh
    py udp_server.py
    ```
-3. Run unity simulation
-4. Get data from sensor and start to build things !
+3. run app
+   ```sh
+   node app.js
+   ```
+4. Run unity simulation
+5. Get data from sensor and start to build things !
+5. Open brower to "localhost:3000" and see 3D POC!
 
 ## Roadmap
 
