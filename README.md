@@ -1,4 +1,4 @@
-# unity-simulation
+# unity-sensors
 
 ## About The Project
 
@@ -18,7 +18,7 @@ To get a local copy up and running follow these simple steps.
 ### Installation
 1. Clone the repo in unity project for the C# script
    ```sh
-   git clone https://github.com//NicoBrug/unity-simulation
+   git clone https://github.com//NicoBrug/unity-sensors
    ```
 2. Add the scripts to your unity objects
 2. run python server
