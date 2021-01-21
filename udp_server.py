@@ -27,14 +27,17 @@ class Server:
             data.decode('utf-8')
             jsondata = json.loads(data)
             print(jsondata["type"])
-
+            self.writeToJSON(jsondata)
             if not data:
                 break
 
     def stopReceive(self):
         self.rcv = False
 
+    def writeToJSON(self,data):
+        with open('data.json', 'w', encoding='utf-8') as f:
+            json.dump(data, f, ensure_ascii=False, indent=4)
 
-    
+
 server = Server()
 server.connect()
