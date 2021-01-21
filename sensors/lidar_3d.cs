@@ -1,7 +1,16 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Collections.Generic;
+
+
+class DataLidar
+{
+    public string sensor;
+    public string type;
+    public List<float> data;
+}
+
 
 public class lidar_3d : MonoBehaviour
 {
@@ -17,7 +26,7 @@ public class lidar_3d : MonoBehaviour
     private Vector3 initPosition;
     private Vector3 initDirection;
     private int layerMask;
-    private socket Sockets;
+    private UDP_client sockets;
 
    
 
@@ -30,10 +39,9 @@ public class lidar_3d : MonoBehaviour
         initDirection = Vector3.forward;
         ActiveDebugRay = false;
 
-        Sockets = new socket();
-        Sockets.setupSocket();
+        sockets = new UDP_client();
+        sockets.Setup();
 
-        Debug.Log(Sockets.socketReady);
 
         /*----- Init SPECIFICATION -> Please refer to the manufacturer's specifications -----*/
         Channel = 4;
@@ -50,14 +58,20 @@ public class lidar_3d : MonoBehaviour
 
     void FixedUpdate()
     {
+        List<float> data = Raycast();
+
         //get racast vector 
-        List<Vector3> data = Raycast();
+        DataLidar dataLidar = new DataLidar();
+        dataLidar.sensor = "lidar3D";
+        dataLidar.type = "point_of_cloud";
+        dataLidar.data = data;
+
         //send to server
-        Sockets.SendMessage(data);
+        sockets.sendData(JsonUtility.ToJson(dataLidar));
     }
 
 
-    List<Vector3> Raycast()
+    List<float> Raycast()
     {
         RaycastHit hit;
 
@@ -66,11 +80,8 @@ public class lidar_3d : MonoBehaviour
         float angleHorizontal = 0;
         float step = Horizontal_FOV / HorizontalResolution;
         //init vector data
-        List<Vector3> dataLidar = new List<Vector3>();
+        List<float> dataLidar = new List<float>();
 
-        int len = (int)(HorizontalResolution * Channel);
-        int[] data;
-        data = new int[len];
         //init index for vector
         int index = 0;
 
@@ -96,10 +107,9 @@ public class lidar_3d : MonoBehaviour
                     {
                         Debug.DrawRay(transform.position, vDirection * hit.distance, Color.red);
                     }
-                    data[index] = (int)(hit.distance); //add distance to data vector
-                    //Debug.Log("POINT"+hit.point);
-                    dataLidar.Add(hit.point);
-
+                    dataLidar.Add(hit.point.x);
+                    dataLidar.Add(hit.point.y);
+                    dataLidar.Add(hit.point.z);
                 }
                 else
                 {
@@ -107,24 +117,19 @@ public class lidar_3d : MonoBehaviour
                     {
                         Debug.DrawRay(transform.position, vDirection * Range, Color.yellow);
                     }
-                    data[index] = 0;
-                    dataLidar.Add(new Vector3(0.0f, 0.0f, 0.0f));
+                    dataLidar.Add(0);
+                    dataLidar.Add(0);
+                    dataLidar.Add(0);
                 }
+
                 //add angle step to horizontal ray
                 angleVertical += stepVertical;
                 index += 1;
                 
             };
-
             angleHorizontal += step;
-            //Debug.Log("DATA" + dataLidar[i]);
-
-            //Debug.Log(data);
         };
-
         return dataLidar;
-        
-
     }
 
     //yaw = vertical, pitch = horizontal
@@ -139,8 +144,6 @@ public class lidar_3d : MonoBehaviour
         Debug.Log("x"+x+" y"+y+" z"+z);
     
     }
-
-
 }
 
     
