@@ -16,14 +16,14 @@ To get a local copy up and running follow these simple steps.
 * unity
 
 ### Installation
-1. Clone the repo in unity project for the C# script
+1. Clone the repo in unity project
    ```sh
    git clone https://github.com//NicoBrug/unity-sensors
    ```
-2. Add the scripts to your unity objects
+2. Add the scripts to your unity GameObjects
 2. run python server
    ```sh
-   py server.py
+   py udp_server.py
    ```
 3. Run unity simulation
 4. Get data from sensor and start to build things !
