@@ -7,7 +7,7 @@ import socketserver
 import http.server
 import socketserver
 
-class Server:
+class UDP_Server:
     def __init__(self):
         self.HOST = '127.0.0.1'
         self.PORT = 12345
@@ -26,7 +26,7 @@ class Server:
             data,addr = s.recvfrom(self.size)
             data.decode('utf-8')
             jsondata = json.loads(data)
-            print(jsondata["type"])
+            #print(jsondata["type"])
             self.writeToJSON(jsondata)
             if not data:
                 break
@@ -39,5 +39,5 @@ class Server:
             json.dump(data, f, ensure_ascii=False, indent=4)
 
 
-server = Server()
+server = UDP_Server()
 server.connect()

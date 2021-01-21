@@ -12,7 +12,7 @@ class DataLidar
 }
 
 
-public class lidar_3d : MonoBehaviour
+public class Lidar_3D_Generics : MonoBehaviour
 {
     public float Channel;
 
