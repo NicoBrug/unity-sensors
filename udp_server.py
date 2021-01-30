@@ -11,7 +11,7 @@ class UDP_Server:
     def __init__(self):
         self.HOST = '127.0.0.1'
         self.PORT = 12345
-        self.size = 1024
+        self.size = 10000
         self.data = []
         self.rcv = True
 
