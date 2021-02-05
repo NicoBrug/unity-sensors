@@ -15,8 +15,7 @@ To get a local copy up and running follow these simple steps.
 
 * python 3.9 
 * unity
-* nodejs
-* npm
+
 
 ### Installation
 1. Clone the repo in unity project
@@ -25,12 +24,8 @@ To get a local copy up and running follow these simple steps.
    ```
 2. Add the scripts to your unity GameObjects
 3. Create material, Add Shader point
-4. run python udp server
-   ```sh
-   py udp_server.py
-   ```
-5. Run unity simulation
-6. Get data from sensor and start to build things !
+4. Run unity simulation
+5. Get data from sensor and start to build things !
 
 
 ## Roadmap

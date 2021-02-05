@@ -3,10 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-
-
-
-
 public class Lidar3D_Generic : MonoBehaviour
 {
 
@@ -51,9 +47,9 @@ public class Lidar3D_Generic : MonoBehaviour
         ActiveDebugRay = false;
 
         /*----- Init SPECIFICATION -> Please refer to the manufacturer's specifications -----*/
-        Channel = 32;
+        Channel = 64;
         Range = 200;
-        HorizontalResolution = 100;
+        HorizontalResolution = 800;
         Horizontal_FOV = 2 * 3.14f;
         Vertical_FOV = 1.22173f;
 
@@ -73,7 +69,7 @@ public class Lidar3D_Generic : MonoBehaviour
     }
 
 
-    void FixedUpdate()
+    void Update()
     {
         Raycast();
     }
@@ -113,8 +109,9 @@ public class Lidar3D_Generic : MonoBehaviour
                         Debug.DrawRay(transform.position, vDirection * hit.distance, Color.red);
                     }
                     ParticleData p = new ParticleData();
-                    Vector4 position = new Vector4(hit.point.x, hit.point.y, hit.point.z, 10.0f);
-                    Vector4 color = new Color(0.8f, 0.0f, 0.219f);
+                    Vector4 position = new Vector4(hit.point.x, hit.point.y, hit.point.z, 5.0f);
+                    Vector3 positionNormalized = new Vector3(hit.point.x, hit.point.y, hit.point.z).normalized;
+                    Vector4 color = new Color(positionNormalized.x, positionNormalized.y, positionNormalized.z, hit.distance);
                     p.Position = position;
                     p.Color = color;
                     particle_list.Add(p);
@@ -151,7 +148,10 @@ public class Lidar3D_Generic : MonoBehaviour
         ParticleBuffer.Release();
     }
 
-
+    void OnMouseDown()
+    {
+        ScreenCapture.CaptureScreenshot("SomeLevel");
+    }
 
     ////yaw = vertical, pitch = horizontal
     //private void getXYZ(float pitch, float yaw, float distance)
