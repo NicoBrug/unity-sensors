@@ -32,11 +32,14 @@ To get a local copy up and running follow these simple steps.
 
 ### sensors
 - [x] Lidar3D (poc)
+   - [x] Ouster OS0
+   - [x] Ouster OS1
+   - [x] Ouster OS2
 - [x] Lidar2D (poc)
 - [x] Distance 
 - [ ] Depth Camera
 - [ ] Camera
-- [ ] Constructor specs (RPLidar, velodyne, ouster,intel) 
+
 
 
 
