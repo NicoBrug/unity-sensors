@@ -47,7 +47,7 @@ public class Lidar3D_Generic : MonoBehaviour
         ActiveDebugRay = false;
 
         /*----- Init SPECIFICATION -> Please refer to the manufacturer's specifications -----*/
-        Channel = 64;
+        Channel = 32;
         Range = 200;
         HorizontalResolution = 800;
         Horizontal_FOV = 2 * 3.14f;
@@ -77,8 +77,11 @@ public class Lidar3D_Generic : MonoBehaviour
 
     void Raycast()
     {
+        numberOfParticles = (int)(Channel * HorizontalResolution);
+        ParticleBuffer = new ComputeBuffer(numberOfParticles, sizeof(float) * 8);
+
         RaycastHit hit;
-        List<ParticleData> particle_list = new List<ParticleData>(); ;
+        List<ParticleData> particle_list = new List<ParticleData>(); 
    
         //config basis
         float radius = 1.0f;
