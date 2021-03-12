@@ -42,6 +42,7 @@ abstract class Ouster : MonoBehaviour
 
     public int layerMask;
 
+
     public struct RaycastConf {
         public float Distance { get; set; }
         public int VerticalResolution { get; set; }
@@ -69,8 +70,13 @@ abstract class Ouster : MonoBehaviour
         public Vector4 Color;
     }
 
+    public Vector3 degToRad(Vector3 deg)
+    {
+        Vector3 res = new Vector3(deg.x * (Mathf.PI / 180), deg.y * (Mathf.PI / 180), deg.z * (Mathf.PI / 180));
+        return res;
+    }
 
-    public List<ParticleData> Raycast(RaycastConf config, Vector3 TranformPosition)
+    public List<ParticleData> Raycast(RaycastConf config, Vector3 TranformPosition, Vector3 transform )
     {
 
         RaycastHit hit;
@@ -82,23 +88,26 @@ abstract class Ouster : MonoBehaviour
         
         float VerticalStep = config.GetVerticalStep();
 
+
         for (int i = 0; i < config.HorizontalResolution; ++i)
         {
-            float direction_x = config.radius * Mathf.Cos(HorizontalAngle);
-            float direction_z = config.radius * Mathf.Sin(HorizontalAngle);
+
+            float direction_x =  config.radius * Mathf.Cos(-Mathf.Deg2Rad * transform.x + HorizontalAngle) ;
+            float direction_z =  config.radius * Mathf.Sin(-Mathf.Deg2Rad * transform.z + HorizontalAngle) ;
 
             float VerticalAngle = -(config.VerticalFOV / 2);
 
             for (int j = 0; j < config.VerticalResolution; ++j)
             {
                 float direction_y = config.radius * Mathf.Sin(VerticalAngle);
-                Vector3 vDirection = new Vector3(direction_x, direction_y, direction_z);
+
+                Vector3 vDirection = new Vector3(direction_x, direction_y, direction_z) ;
+
+
 
                 if (Physics.Raycast(TranformPosition, vDirection, out hit, config.Distance, layerMask))
                 {
                     Vector4 color1 = new Color(0.8f, 0.0f, 0.219f);
-
-                    Debug.DrawRay(TranformPosition, vDirection * config.Distance, color1);
 
                     ParticleData p = new ParticleData();
                     Vector4 position = new Vector4(hit.point.x , hit.point.y , hit.point.z , 15.0f);

@@ -35,6 +35,7 @@ public class Lidar3D_Generic : MonoBehaviour
     private ComputeBuffer ParticleBuffer;
     private int numberOfParticles;
 
+    private System.Diagnostics.Stopwatch stopwatch = new System.Diagnostics.Stopwatch();
 
 
     void Start()
@@ -47,9 +48,9 @@ public class Lidar3D_Generic : MonoBehaviour
         ActiveDebugRay = false;
 
         /*----- Init SPECIFICATION -> Please refer to the manufacturer's specifications -----*/
-        Channel = 32;
+        Channel = 1;
         Range = 200;
-        HorizontalResolution = 800;
+        HorizontalResolution = 1024;
         Horizontal_FOV = 2 * 3.14f;
         Vertical_FOV = 1.22173f;
 
@@ -79,6 +80,9 @@ public class Lidar3D_Generic : MonoBehaviour
     {
         numberOfParticles = (int)(Channel * HorizontalResolution);
         ParticleBuffer = new ComputeBuffer(numberOfParticles, sizeof(float) * 8);
+
+        stopwatch.Reset();
+        stopwatch.Start();
 
         RaycastHit hit;
         List<ParticleData> particle_list = new List<ParticleData>(); 
@@ -140,6 +144,9 @@ public class Lidar3D_Generic : MonoBehaviour
             };
             angleHorizontal += step;
         };
+        stopwatch.Stop();
+        Debug.Log(" Temps de la fonction = " + (stopwatch.ElapsedTicks / 10000.0) + "ms");
+
         ParticleBuffer.SetData(particle_list);
 
     }

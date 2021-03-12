@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-class AlphaPrime : Velodyne
+class HDL32E : Velodyne
 {
 
     void Start()
@@ -11,14 +11,14 @@ class AlphaPrime : Velodyne
         layerMask = 1 << 8;
         layerMask = ~layerMask;
 
-        config.Distance = 245.0f;
+        config.Distance = 150.0f;
         config.AngularResolution = AngularResolution;
-        config.VerticalResolution = 128;
+        config.VerticalResolution = 32;
         config.HorizontalResolution = config.GetHorizontalResolution();
 
-        config.VerticalFOV = 0.698132f;
-        config.VerticalFOVMin = -0.436332f;
-        config.VerticalFOVMax =  15.0f;
+        config.VerticalFOV = 0.71558499f;
+        config.VerticalFOVMin = -0.52359878f;
+        config.VerticalFOVMax = 15.0f;
 
         config.HorizontalFOV = 3.14f * 2.0f;
         config.radius = 1.0f;

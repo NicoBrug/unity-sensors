@@ -13,6 +13,7 @@ class OS0 : Ouster
     private float H_Res;
 
     private Channels VR;
+    private System.Diagnostics.Stopwatch stopwatch = new System.Diagnostics.Stopwatch();
 
     void Start()
     {
@@ -47,6 +48,7 @@ class OS0 : Ouster
     void Update()
     {
 
+
         switch (VerticalResolution)
         {
             case Channels.Channel_32:
@@ -72,8 +74,14 @@ class OS0 : Ouster
                 configurationRay.HorizontalResolution = 2048;
                 break;
         }
-        
-        List<ParticleData> particledata = Raycast(configurationRay, transform.position);
+
+        stopwatch.Reset();
+        stopwatch.Start();
+        List<ParticleData> particledata = Raycast(configurationRay, transform.position, transform.eulerAngles);
+        //-Mathf.Deg2Rad * this.transform.eulerAngles.y
+        stopwatch.Stop();
+        Debug.Log(" Temps de la fonction = " + (stopwatch.ElapsedTicks / 10000.0) + "ms");
+
 
         numberOfParticles = (int)(configurationRay.VerticalResolution * configurationRay.HorizontalResolution);
         ParticleBuffer = new ComputeBuffer(numberOfParticles, sizeof(float) * 8);

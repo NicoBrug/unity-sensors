@@ -35,6 +35,19 @@ class OS2 : Ouster
       
     }
 
+    private void OnRenderObject()
+    {
+        //Set shader parameter /!\ -> Transorm inutile because lidar point are already in world matrix
+        mt.SetPass(0);
+
+        mt.SetBuffer("_ParticleDataBuff", ParticleBuffer);
+        mt.SetFloat("_ParticleSize", SizeParticle);
+
+        Graphics.DrawProceduralNow(MeshTopology.Triangles, 3 * 4, numberOfParticles);
+    }
+
+
+
     void Update()
     {
 
@@ -67,7 +80,7 @@ class OS2 : Ouster
         numberOfParticles = (int)(configurationRay.VerticalResolution * configurationRay.HorizontalResolution);
         ParticleBuffer = new ComputeBuffer(numberOfParticles, sizeof(float) * 8);
 
-        List<ParticleData> particledata = Raycast(configurationRay, transform.position);
+        List<ParticleData> particledata = Raycast(configurationRay, transform.position, transform.eulerAngles);
         ParticleBuffer.SetData(particledata);
 
     }
