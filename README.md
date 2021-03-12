@@ -31,12 +31,19 @@ To get a local copy up and running follow these simple steps.
 ## Roadmap
 
 ### sensors
-- [x] Lidar3D (poc)
+- Lidar3D (poc)
+   - [x] Ouster OS0
+   - [x] Ouster OS1
+   - [x] Ouster OS2
+   - [x] Velodyne Alpha Prime
+   - [x] Velodyne HDL32
+   - [x] Velodyne Puck
+   - [x] Velodyne Ultra Puck   
 - [x] Lidar2D (poc)
 - [x] Distance 
 - [ ] Depth Camera
 - [ ] Camera
-- [ ] Constructor specs (RPLidar, velodyne, ouster,intel) 
+
 
 
 
