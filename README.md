@@ -1,6 +1,6 @@
 # unity-sensors
 
-## About The Project
+## ℹ️️ Description
 
 This project aims to build tools for numerical simulation with unity in particular sensors.
 Parameterizable components will be available (Generic component) as well as tools that can be quickly integrated according to different manufacturers' specifications.These components are intended for use with robotic development platforms such as ROS(2), as well as for testing AI or SLAM algorithms in python or other languages. In order to simplify the export of sensor data from the simulation, it is possible to use the dedicated python server to retrieve the data and then test the developed systems.The data is serialized in JSON then sent in UDP from Unity to the python server. 
@@ -17,7 +17,7 @@ To get a local copy up and running follow these simple steps.
 * unity
 
 
-### Installation
+## 🔧 How to Use
 1. Clone the repo in unity project
    ```sh
    git clone https://github.com//NicoBrug/unity-sensors
